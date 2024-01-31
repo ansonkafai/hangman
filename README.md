@@ -39,29 +39,6 @@ Assume the project is cloned to your local path `C:\tmp\hangman\`.
 
     <img src="./hangman.jpg" width="50%" height="50%">
 
-## Steps for running the game on Linux
-
-Assume the project is cloned to your local path `/tmp/hangman`.
-
-1. Open a terminal session and run the below commands to create venv:
-   ```shell script
-   cd /tmp/hangman
-   python -m venv venv
-   source venv/Scripts/activate
-   pip install -U pip
-   pip install -r requirements.txt
-   ```
-
-1. Run this command to execute linting and unit testing:
-   ```shell script
-   tox
-   ```
-
-1. Run this command to start the game:
-    ```shell script
-    python -m hangman
-    ```
-    
 ## Tech Stack
 
 | Framework                                            | Version     |

@@ -2,7 +2,7 @@
 
 from hangman.constants import HANGMAN_PICS
 from hangman.models import HangmanGameData
-from hangman.views import get_player_guess, play_again, show_hangman_board, show_player_lost, show_player_won
+from hangman.views import HangmanGameView
 
 
 class HangmanGameController:
@@ -18,30 +18,31 @@ class HangmanGameController:
 
     def start_game(self):
         """Start the Hangman game."""
+        hangman_game_view = HangmanGameView()
         while True:
-            show_hangman_board(self.hangman_game_data)
+            hangman_game_view.show_hangman_board(self.hangman_game_data)
 
             # Let the player enter a guess letter.
-            player_guess = get_player_guess(self.hangman_game_data)
+            player_guess = hangman_game_view.get_player_guess(self.hangman_game_data)
 
             if player_guess in self.hangman_game_data.secret_word:
                 # If guess letter is correct, save it to the correct list.
                 self.hangman_game_data.correct_letters.append(player_guess)
                 if self.is_player_won():
                     # Check if player won the game, show winning message.
-                    show_hangman_board(self.hangman_game_data)
-                    show_player_won(self.hangman_game_data)
+                    hangman_game_view.show_hangman_board(self.hangman_game_data)
+                    hangman_game_view.show_player_won(self.hangman_game_data)
                     self.hangman_game_data.game_finished = True
             else:
                 self.hangman_game_data.missed_letters.append(player_guess)
                 if self.is_guessed_too_many_times():
                     # Check if run out of guesses, show lost game message.
-                    show_hangman_board(self.hangman_game_data)
-                    show_player_lost(self.hangman_game_data)
+                    hangman_game_view.show_hangman_board(self.hangman_game_data)
+                    hangman_game_view.show_player_lost(self.hangman_game_data)
                     self.hangman_game_data.game_finished = True
 
             if self.hangman_game_data.game_finished:
-                if play_again():
+                if hangman_game_view.play_again():
                     # Refresh the game data if player wants to play again.
                     self.hangman_game_data = HangmanGameData()
                 else:

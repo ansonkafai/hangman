@@ -96,13 +96,29 @@ class HangmanGameView:
         """
         click.secho(self.get_hangman_pic(hangman_game_data), fg="bright_red", bold=True)
 
+    def get_missed_letters_message(self, hangman_game_data: HangmanGameData) -> str:
+        """Get missed letters message.
+
+        Args:
+            hangman_game_data: The data object for retrieving the missed letters.
+        """
+        return f"Missed letters : {' '.join(hangman_game_data.missed_letters)}"
+
     def show_missed_letters(self, hangman_game_data: HangmanGameData) -> None:
         """Show missed guesses to console.
 
         Args:
             hangman_game_data: The data object for retrieving the missed letters.
         """
-        click.secho(f"Missed letters : {' '.join(hangman_game_data.missed_letters)}")
+        click.secho(self.get_missed_letters_message(hangman_game_data))
+
+    def get_secret_word_with_correct_letters_message(self, hangman_game_data: HangmanGameData) -> str:
+        """Get correct guesses message.
+
+        Args:
+            hangman_game_data: The data object for retrieving the combination of secret word and correct letters.
+        """
+        return f"Correct letters: {hangman_game_data.secret_word_with_correct_letters}"
 
     def show_secret_word_with_correct_letters(self, hangman_game_data: HangmanGameData) -> None:
         """Show correct guesses to console.
@@ -110,7 +126,7 @@ class HangmanGameView:
         Args:
             hangman_game_data: The data object for retrieving the combination of secret word and correct letters.
         """
-        click.secho(f"Correct letters: {hangman_game_data.secret_word_with_correct_letters}")
+        click.secho(self.get_secret_word_with_correct_letters_message(hangman_game_data))
 
     def show_hangman_board(self, hangman_game_data: HangmanGameData) -> None:
         """Show Hangman board to console.

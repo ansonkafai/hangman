@@ -32,6 +32,10 @@ class TestHangmanGameData:
     def under_test(self, missed_letters: List[str], correct_letters: List[str]) -> HangmanGameData:
         """Provide HangmanGameData object for unit testing.
 
+        Args:
+            missed_letters: The missed letters list from predefined fixture.
+            correct_letters: The correct letters list from predefined fixture.
+
         Returns:
             HangmanGameData: The Hangman game data object to be tested.
         """
@@ -42,7 +46,7 @@ class TestHangmanGameData:
     ) -> None:
         """Test the already_guessed_letters() method of HangmanGameData object.
 
-        Returns:
+        Args:
             under_test: The to be tested HangmanGameData object from predefined fixture.
             missed_letters: The missed letters list from predefined fixture.
             correct_letters: The correct letters list from predefined fixture.
@@ -52,7 +56,7 @@ class TestHangmanGameData:
     def test_secret_word_with_correct_letters(self, under_test: HangmanGameData) -> None:
         """Test the secret_word_with_correct_letters() method of HangmanGameData object.
 
-        Returns:
+        Args:
             under_test: The to be tested HangmanGameData object from predefined fixture.
         """
         assert under_test.secret_word_with_correct_letters == "_ e s _"

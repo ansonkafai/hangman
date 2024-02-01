@@ -111,7 +111,11 @@ class TestHangmanGameView:
         assert under_test.get_player_won_message(hangman_game_data) == expected_msg
 
     def test_get_player_lost_message_first_line(self, under_test: HangmanGameView) -> None:
-        """Test the get_player_lost_message_first_line() method of views module."""
+        """Test the get_player_lost_message_first_line() method of views module.
+
+        Args:
+            under_test: The to-be-tested HangmanGameView object from fixture.
+        """
         hangman_game_data = HangmanGameData(secret_word="test")
         expected_msg = f"You have run out of guesses! The word is: '{hangman_game_data.secret_word}'."
         assert under_test.get_player_lost_message_first_line(hangman_game_data) == expected_msg

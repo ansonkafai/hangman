@@ -21,7 +21,11 @@ class TestHangmanGameView:
         return HangmanGameView()
 
     def test_validate_player_guess_entered_more_than_one_letter(self, under_test: HangmanGameView) -> None:
-        """Test the validate_player_guess() method of views module, entered more than one letter."""
+        """Test the validate_player_guess() method of views module, entered more than one letter.
+
+        Args:
+            under_test: The to-be-tested HangmanGameView object from fixture.
+        """
         input_letter = "ab"
         hangman_game_data = HangmanGameData(player_guess=input_letter)
         input_err, err_msg = under_test.validate_player_guess(hangman_game_data)
@@ -29,7 +33,11 @@ class TestHangmanGameView:
         assert err_msg == "Please enter one letter only."
 
     def test_validate_player_guess_entered_letter_already_guessed(self, under_test: HangmanGameView) -> None:
-        """Test the validate_player_guess() method of views module, entered letter that already guessed."""
+        """Test the validate_player_guess() method of views module, entered letter that already guessed.
+
+        Args:
+            under_test: The to-be-tested HangmanGameView object from fixture.
+        """
         input_letter = "a"
         hangman_game_data = HangmanGameData(player_guess=input_letter, missed_letters=[input_letter])
         input_err, err_msg = under_test.validate_player_guess(hangman_game_data)
@@ -37,7 +45,11 @@ class TestHangmanGameView:
         assert err_msg == f"You have already guessed the letter [{input_letter}]. Please choose again."
 
     def test_validate_player_guess_entered_letter_not_alphabet(self, under_test: HangmanGameView) -> None:
-        """Test the validate_player_guess() method of views module, entered letter is not an alphabet."""
+        """Test the validate_player_guess() method of views module, entered letter is not an alphabet.
+
+        Args:
+            under_test: The to-be-tested HangmanGameView object from fixture.
+        """
         input_letter = "3"
         hangman_game_data = HangmanGameData(player_guess=input_letter)
         input_err, err_msg = under_test.validate_player_guess(hangman_game_data)
@@ -45,20 +57,32 @@ class TestHangmanGameView:
         assert err_msg == "Please enter an alphabet letter (a-z/A-Z)."
 
     def test_get_player_guess(self, under_test: HangmanGameView) -> None:
-        """Test normal case of the get_player_guess() method of views module."""
+        """Test normal case of the get_player_guess() method of views module.
+
+        Args:
+            under_test: The to-be-tested HangmanGameView object from fixture.
+        """
         input_letter = "a"
         with mock.patch("click.prompt") as mock_prompt:
             mock_prompt.return_value = input_letter
             assert under_test.get_player_guess(HangmanGameData()) == input_letter
 
     def test_play_again_true(self, under_test: HangmanGameView) -> None:
-        """Test normal case of the get_random_word() method of views module."""
+        """Test normal case of the get_random_word() method of views module.
+
+        Args:
+            under_test: The to-be-tested HangmanGameView object from fixture.
+        """
         with mock.patch("click.prompt") as mock_prompt:
             mock_prompt.return_value = "y"
             assert under_test.play_again() is True
 
     def test_play_again_false(self, under_test: HangmanGameView) -> None:
-        """Test negative cases of the get_random_word() method of views module."""
+        """Test negative cases of the get_random_word() method of views module.
+
+        Args:
+            under_test: The to-be-tested HangmanGameView object from fixture.
+        """
         with mock.patch("click.prompt") as mock_prompt:
             mock_prompt.return_value = "n"
             assert under_test.play_again() is False
@@ -69,12 +93,19 @@ class TestHangmanGameView:
         """Test the get_hangman_pic() method of views module.
 
         Check if Hangman pic retrieved correctly according to the number of missed guesses.
+
+        Args:
+            under_test: The to-be-tested HangmanGameView object from fixture.
         """
         hangman_game_data = HangmanGameData(missed_letters=["a", "b"])
         assert under_test.get_hangman_pic(hangman_game_data) == HANGMAN_PICS[len(hangman_game_data.missed_letters)]
 
     def test_get_player_won_message(self, under_test: HangmanGameView) -> None:
-        """Test the get_player_won_message() method of views module."""
+        """Test the get_player_won_message() method of views module.
+
+        Args:
+            under_test: The to-be-tested HangmanGameView object from fixture.
+        """
         hangman_game_data = HangmanGameData(secret_word="test")
         expected_msg = f"You won the game! The secret word is '{hangman_game_data.secret_word}'."
         assert under_test.get_player_won_message(hangman_game_data) == expected_msg
@@ -86,7 +117,11 @@ class TestHangmanGameView:
         assert under_test.get_player_lost_message_first_line(hangman_game_data) == expected_msg
 
     def test_get_player_lost_message_second_line(self, under_test: HangmanGameView) -> None:
-        """Test the get_player_lost_message_second_line() method of views module."""
+        """Test the get_player_lost_message_second_line() method of views module.
+
+        Args:
+            under_test: The to-be-tested HangmanGameView object from fixture.
+        """
         missed_letters = ["a", "b", "c", "d", "f", "g"]
         correct_letters = ["e"]
         hangman_game_data = HangmanGameData(

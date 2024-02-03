@@ -149,7 +149,7 @@ class HangmanGameView:
         Returns:
             str: The player won message.
         """
-        return f"You won the game! The secret word is '{hangman_game_data.secret_word}'."
+        return f"You won the game! The word is '{hangman_game_data.secret_word}'."
 
     def show_player_won(self, hangman_game_data: HangmanGameData) -> None:
         """Show player won message.

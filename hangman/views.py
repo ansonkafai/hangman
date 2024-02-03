@@ -157,7 +157,7 @@ class HangmanGameView:
         Args:
             hangman_game_data: The data object for retrieving the secret word.
         """
-        click.secho(self.get_player_won_message(hangman_game_data), fg="blue")
+        click.secho(self.get_player_won_message(hangman_game_data), fg="bright_blue")
 
     def get_player_lost_message_first_line(self, hangman_game_data: HangmanGameData) -> str:
         """Get first line of player lost message.

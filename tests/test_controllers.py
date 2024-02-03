@@ -48,7 +48,6 @@ class TestHangmanGameController:
         Returns:
             Mock: mock object for suppressing UI display and console prompt, and also simulating one round game.
         """
-
         mock_hangman_game_view = Mock(spec=HangmanGameView)
 
         # Mock the view object's methods to suppress the UI board display and console prompting.
@@ -105,6 +104,7 @@ class TestHangmanGameController:
         hangman_game_controller = HangmanGameController(hangman_game_data, mock_hangman_game_view)
         hangman_game_controller.start_game()
 
+        # Assert the expected missed_letters, correct_letters and game_finished after one round player won.
         assert hangman_game_controller.hangman_game_data.correct_letters == correct_letters
         assert hangman_game_controller.hangman_game_data.missed_letters == []
         assert hangman_game_controller.hangman_game_data.game_finished is True
@@ -126,6 +126,7 @@ class TestHangmanGameController:
         hangman_game_controller = HangmanGameController(hangman_game_data, mock_hangman_game_view)
         hangman_game_controller.start_game()
 
+        # Assert the expected missed_letters, correct_letters and game_finished after one round player lost.
         assert hangman_game_controller.hangman_game_data.correct_letters == []
         assert hangman_game_controller.hangman_game_data.missed_letters == missed_letters
         assert hangman_game_controller.hangman_game_data.game_finished is True
@@ -152,13 +153,13 @@ class TestHangmanGameController:
             hangman_game_controller = HangmanGameController(hangman_game_data, mock_hangman_game_view)
             hangman_game_controller.start_game()
 
-            # Assert the first round game,
+            # Assert the first round game (player win),
             # if the view's show_player_won() method is called once with the expected correct_letters.
             hangman_game_data.missed_letters = []
             hangman_game_data.correct_letters = correct_letters
             assert mock_hangman_game_view.show_player_won.mock_calls == [call(hangman_game_data)]
 
-            # Assert the second round game,
+            # Assert the second round game (player lose),
             # if the view's show_player_lost() method is called once with the expected missed_letters.
             hangman_game_data.missed_letters = missed_letters
             hangman_game_data.correct_letters = []

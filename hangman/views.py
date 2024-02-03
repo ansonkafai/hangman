@@ -28,7 +28,7 @@ class HangmanGameView:
         guess_letter = hangman_game_data.player_guess
 
         if len(guess_letter) != 1:
-            input_err, err_msg = True, "Please enter one letter only."
+            input_err, err_msg = True, "Please enter one letter."
         elif guess_letter in hangman_game_data.already_guessed_letters:
             input_err, err_msg = True, f"You have already guessed the letter [{guess_letter}]. Please choose again."
         elif not guess_letter.isalpha():
@@ -52,7 +52,7 @@ class HangmanGameView:
                 click.secho()
 
             # Capture and validate player's input.
-            hangman_game_data.player_guess = click.prompt("Please enter a guess letter").lower()
+            hangman_game_data.player_guess = click.prompt("Please enter a guess letter", default="").lower()
             input_err, err_msg = self.validate_player_guess(hangman_game_data)
 
             if input_err:

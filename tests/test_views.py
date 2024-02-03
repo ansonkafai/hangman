@@ -30,7 +30,7 @@ class TestHangmanGameView:
         hangman_game_data = HangmanGameData(player_guess=input_letter)
         input_err, err_msg = under_test.validate_player_guess(hangman_game_data)
         assert input_err is True
-        assert err_msg == "Please enter one letter only."
+        assert err_msg == "Please enter one letter."
 
     def test_validate_player_guess_entered_letter_already_guessed(self, under_test: HangmanGameView) -> None:
         """Test the validate_player_guess() method of HangmanGameView class, entered letter that already guessed.

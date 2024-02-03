@@ -37,8 +37,8 @@ Assume the project is cloned to your local path `C:\tmp\hangman\`.
     python -m hangman
     ```
 
-    <img src="./hangman_player_won.jpg" width="100%" height="100%" style="border: 1px solid black">
-    <img src="./hangman_player_lost.jpg" width="100%" height="100%" style="border: 1px solid black">
+    <img src="./hangman_player_won.jpg?20130910043254" width="100%" height="100%" style="border: 1px solid black">
+    <img src="./hangman_player_lost.jpg?20130910043254" width="100%" height="100%" style="border: 1px solid black">
 
 ## Tech Stack
 
